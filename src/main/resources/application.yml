@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: device-drive-services
+  profiles:
+    active: pro
+
+youngsun:
+  mqtt:
+    username: server
+    password: Ale123456
+    url: tcp://youngsunnb.com:1883
+    client.id: demo
+    completionTimeout: 3000
+    default:
+      receiveTopic: demo/+/+/+
+  elasticsearch:
+    host: 127.0.0.1
+    port: 9200
+    scheme: http
+    username: ''
+    password: ''
+#    username: 'elastic'
+#    password: '8SFBJzTq_iIBf+Xgo0PZ'
+
+logging:
+  level:
+    tracer: TRACE

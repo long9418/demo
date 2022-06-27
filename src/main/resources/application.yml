@@ -1,6 +1,6 @@
 spring:
   application:
-    name: device-drive-services
+    name: gateway-demo
   profiles:
     active: pro
 

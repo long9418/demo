@@ -21,16 +21,23 @@ import javax.net.ssl.X509TrustManager;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
+/** Elasticsearch配置 **/
 @Configuration
 @ConfigurationProperties(prefix = "youngsun.elasticsearch")
 @Data
 public class ElasticsearchConfig {
+    /** 索引名称 **/
+    public static String INDEX_NAME = "test_index";
+    /** ES服务地址 **/
     private String host;
+    /** ES端口 **/
     private Integer port;
+    /** 协议（http或https） **/
     private String scheme;
+    /** 用户名 **/
     private String username;
+    /** 密码 **/
     private String password;
-    private String indexPrefix;
 
     @Bean
     public ElasticsearchClient elasticsearchClient(RestClient restClient) {

@@ -16,29 +16,37 @@ import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 
+/**
+ * MQTT配置
+ */
 @Configuration
 @IntegrationComponentScan
 public class MqttConfig {
     public static final String CHANNEL_NAME_IN = "mqttInboundChannel";
     public static final String CHANNEL_NAME_OUT = "mqttOutboundChannel";
 
+    /** 用户名 **/
     @Value("${youngsun.mqtt.username}")
     private String username;
 
+    /** 密码 **/
     @Value("${youngsun.mqtt.password}")
     private String password;
 
+    /** MQTT服务器地址 **/
     @Value("${youngsun.mqtt.url}")
     private String hostUrl;
 
+    /** MQTT ClientID **/
     @Value("#{'${youngsun.mqtt.client.id}'.concat('_').concat('${spring.profiles.active}').concat('_').concat((T(java.lang.Math).random() * 10000).intValue())}")
     private String clientId;
 
+    /** 默认订阅主题 **/
     @Value("${youngsun.mqtt.default.receiveTopic}")
     private String[] receiveTopic;
 
     @Value("${youngsun.mqtt.completionTimeout}")
-    private int completionTimeout;   //连接超时
+    private int completionTimeout;
 
     @Bean
     public MqttConnectOptions mqttConnectOptions() {

@@ -4,8 +4,7 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import jakarta.json.Json;
-import jakarta.json.JsonObject;
+import com.example.demo.es.ElasticsearchConfig;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 接收处理MQTT消息，并保存到ES中
+ */
 @Component
 @Log4j2
 public class MqttReceivedMessageHandler {
@@ -54,8 +56,9 @@ public class MqttReceivedMessageHandler {
         data.put("deviceNo", deviceNo);
         data.put("count", count);
         data.put("createTime", new Date());
+        // 保存数据到ES
         IndexResponse response = elasticsearchClient.index(request -> {
-            request.index("test_index");
+            request.index(ElasticsearchConfig.INDEX_NAME);
             request.document(data);
             return request;
         });

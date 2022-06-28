@@ -12,15 +12,19 @@ youngsun:
     client.id: demo
     completionTimeout: 3000
     default:
-      receiveTopic: demo/+/+/+
+      receiveTopic: a/b/c/d/#,demo/+/+/+
   elasticsearch:
     host: 127.0.0.1
     port: 9200
     scheme: http
     username: ''
     password: ''
+#  elasticsearch:
+#    host: qingcloud.*********
+#    port: 9200
+#    scheme: http
 #    username: 'elastic'
-#    password: '8SFBJzTq_iIBf+Xgo0PZ'
+#    password: '+fyIfF0AqFb7A=klPIJO'
 
 logging:
   level:
